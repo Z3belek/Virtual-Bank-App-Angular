@@ -7,6 +7,7 @@ import { MaterialModule } from '../material/material.module';
 import { FooterComponent } from './components/footer/footer.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { TituloComponent } from './components/titulo/titulo.component';
+import { DialogComponent } from './components/dialog/dialog.component';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { TituloComponent } from './components/titulo/titulo.component';
     HeaderComponent,
     FooterComponent,
     SidebarComponent,
-    TituloComponent
+    TituloComponent,
+    DialogComponent
   ],
   imports: [
     CommonModule,
@@ -24,7 +26,8 @@ import { TituloComponent } from './components/titulo/titulo.component';
   exports: [
     HeaderComponent,
     FooterComponent,
-    TituloComponent
+    TituloComponent,
+    DialogComponent
   ]
 })
 export class SharedModule { }
