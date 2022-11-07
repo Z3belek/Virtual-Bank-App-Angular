@@ -39,10 +39,16 @@ export class RegistroComponent {
       }
       this.auth.registro(this.miFormulario.value)
       .subscribe(data => {
+        if(data){
         this.router.navigate(['/auth/login'])
         console.log(data)
+        } else {
+          this.sweetalert.datosDuplicadosAlert()
+          return
+        }
       })
    }
+
 
    openDialog(){
     const dialogRef = this.dialog.open(TerminosComponent);
