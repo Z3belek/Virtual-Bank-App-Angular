@@ -32,34 +32,6 @@ export class RegistroComponent implements OnInit{
       password: ['', [Validators.required, Validators.minLength(6)]],
     })
   }
-
-  // //variables
-  // miFormulario: FormGroup = this.formBuilder.group({
-  //   first_name: ['', [Validators.required]],
-  //   last_name:['', [Validators.required]],
-  //   email: ['', [Validators.required, Validators.email]],
-  //   password:['', [Validators.required]],
-  // })
-
-
-  //  register(){
-  //     this.isSubmitted = true;
-  //     if(this.miFormulario.invalid){
-  //       return;
-  //     }
-  //     this.authService.registro(this.miFormulario.value)
-  //     .subscribe(data => {
-  //       if(data){
-  //       this.router.navigate(['/auth/login'])
-  //       console.log(data)
-  //       } else {
-  //         this.sweetalert.datosDuplicadosAlert()
-  //         return
-  //       }
-  //     })
-  //  }
-
-
   register() {
     this.isSubmitted = true;
     if (this.registerForm.valid) {

@@ -9,19 +9,16 @@ import { catchError, map, Observable, of, tap } from 'rxjs';
 })
 export class BaseServicesService {
   private baseApi = environment.apiBase
-  private _usuario!:User
 
-
-   get user(){
-     return {...this._usuario}
-   }
 
   constructor(private http: HttpClient) { }
 
 
   resetPasswordById(id: number, password: string) {
     const url = `${this.baseApi}/users/resetPassword/${id}`;
-    return this.http.patch(url, { password });
+    return this.http.patch(url, { password }).pipe(
+      catchError(error => of(false))
+    )
   }
 
   getPerfil():Observable<User>{
