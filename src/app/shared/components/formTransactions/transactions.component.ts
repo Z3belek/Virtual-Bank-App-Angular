@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { TransactionsService } from '@core/services/banco/transactions.service';
 import { Transactions } from '@core/model/interfacesTransactions';
-import { FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'ab-transactions',
@@ -9,7 +9,7 @@ import { FormGroup } from '@angular/forms';
   styleUrls: ['./transactions.component.scss']
 })
 export class TransactionsComponent implements OnInit {
-
+  Transferencias:Transactions[] = []
   enviarDinero!: FormGroup;
 
 
@@ -21,34 +21,34 @@ export class TransactionsComponent implements OnInit {
   hourAndDate:string=""
   UserID:number=0
 
-  constructor(public modalSS:TransactionsService) { }
+  constructor(public modalSS:TransactionsService, private formBuilder: FormBuilder) { }
 
-  ngOnInit(){
-
+  ngOnInit(): void {
+    this.enviarDinero = this.formBuilder.group({
+      monto:['', [Validators.required]],
+      tipocuenta:['', [Validators.required]],
+      concepto:['', [Validators.required]]
+    })
   }
+  sendmoney(){
 
-
-  sendDataForm(monto:any,concepto:string){
 
     //console.log("monto: "+monto, "concepto: "+concepto, "fecha: "+this.hourAndDate)
-
+    const {monto, tipocuenta, concepto} = this.enviarDinero.value
     const formData : Transactions = {
       amount: monto,
       concept: concepto,
-      date: this.hourAndDate,
-      type: 'payment',
-      accountId: 23,
-      userId: 4,
-      to_account_id: 5
+      date: "2022-10-26 15:00:00",
+      type: tipocuenta,
+      accountId: 993,
+      userId: 1599,
+      to_account_id: 3
     }
 
     this.modalSS.postTransaction(formData).subscribe((data)=>{
       console.log(data)
     })
   }
-
-
-
 
   obtenerFecha (){
     //FECHA//
