@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { TransactionsService } from '@core/services/banco/transactions.service';
 import { Transactions } from '@core/model/interfacesTransactions';
+import { FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'ab-transactions',
@@ -8,6 +9,9 @@ import { Transactions } from '@core/model/interfacesTransactions';
   styleUrls: ['./transactions.component.scss']
 })
 export class TransactionsComponent implements OnInit {
+
+  enviarDinero!: FormGroup;
+
 
   @Input() tittle:string = ""
 
@@ -19,22 +23,15 @@ export class TransactionsComponent implements OnInit {
 
   constructor(public modalSS:TransactionsService) { }
 
+  ngOnInit(){
 
-
-
-
-
-  funcASD(){
-    console.log("II")
   }
-  
-  
 
 
   sendDataForm(monto:any,concepto:string){
 
     //console.log("monto: "+monto, "concepto: "+concepto, "fecha: "+this.hourAndDate)
-    
+
     const formData : Transactions = {
       amount: monto,
       concept: concepto,
@@ -49,7 +46,7 @@ export class TransactionsComponent implements OnInit {
       console.log(data)
     })
   }
-  
+
 
 
 
@@ -59,7 +56,7 @@ export class TransactionsComponent implements OnInit {
     let day = date.getDate()
     let month = date.getMonth() + 1
     let year = date.getFullYear()
-    
+
     if(month < 10 && day < 10){
       this.fecha = `${year}-0${month}-0${day}`
       console.log(this.fecha)
@@ -72,13 +69,13 @@ export class TransactionsComponent implements OnInit {
     let timeMinutes = date.getMinutes().toString()
     let timeSecond = date.getSeconds().toString()
     let clockSet
-    
+
     if(timeHour.toString().length<2){
       let timeHourString = timeHour.toString()
       timeHourString = "0" + timeHourString
-      clockSet = `${timeHourString}:${timeMinutes}:${timeSecond}` 
+      clockSet = `${timeHourString}:${timeMinutes}:${timeSecond}`
     }else{
-      clockSet = `${timeHour}:${timeMinutes}:${timeSecond}` 
+      clockSet = `${timeHour}:${timeMinutes}:${timeSecond}`
     }
     console.log(clockSet)
 
@@ -89,13 +86,13 @@ export class TransactionsComponent implements OnInit {
 
 
 
-  ngOnInit(): void {
-    this.modalSS.$modal.subscribe((valor)=>{
-      console.log(valor)
-      this.correspondeIngreso = valor
-      console.log(this.correspondeIngreso)
-    })
-    this.obtenerFecha()
-  }
+  // ngOnInit(): void {
+  //   this.modalSS.$modal.subscribe((valor)=>{
+  //     console.log(valor)
+  //     this.correspondeIngreso = valor
+  //     console.log(this.correspondeIngreso)
+  //   })
+  //   this.obtenerFecha()
+  // }
 
 }
