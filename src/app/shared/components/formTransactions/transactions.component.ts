@@ -31,8 +31,6 @@ export class TransactionsComponent implements OnInit {
     })
   }
   sendmoney(){
-
-
     //console.log("monto: "+monto, "concepto: "+concepto, "fecha: "+this.hourAndDate)
     const {monto, tipocuenta, concepto} = this.enviarDinero.value
     const formData : Transactions = {

@@ -8,7 +8,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { TituloComponent } from './components/titulo/titulo.component';
 import { AvatarComponent } from './components/avatar/avatar.component';
 import { TransactionsComponent } from './components/formTransactions/transactions.component';
-
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -23,6 +23,7 @@ import { TransactionsComponent } from './components/formTransactions/transaction
     CommonModule,
     AuthRoutingModule,
     MaterialModule,
+    ReactiveFormsModule
   ],
   exports: [
     HeaderComponent,
