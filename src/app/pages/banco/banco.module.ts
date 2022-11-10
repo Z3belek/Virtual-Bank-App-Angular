@@ -19,7 +19,6 @@ import { ContactsComponent } from './pages/contacts/contacts.component';
 import { TransactionsComponent } from './pages/dashboard/components/transactions/transactions.component';
 import { SharedModule } from '@shared/shared.module';
 
-import { SharedModule } from '@shared/shared.module';
 
 @NgModule({
   declarations: [

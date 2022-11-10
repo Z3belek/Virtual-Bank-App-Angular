@@ -1,6 +1,7 @@
 
 .container{
-  margin: 0 auto;
+  margin: 1rem auto;
+
     .title-container {
       width: 100%;
       padding:0.5 0;
@@ -14,8 +15,8 @@
     }
   .table-container {
     width: 100%;
-    height: min-content;
-    max-height: 10rem;
+    height: 22rem;
+    max-height: 30rem;
     overflow: auto;
 
     .mat-table {
@@ -26,6 +27,10 @@
 
           font-size:1.5rem;
           font-weight: 400;
+            }
+
+            th.mat-sort-header-sorted {
+              color: black;
             }
         }
 
