@@ -9,6 +9,7 @@ import { TituloComponent } from './components/titulo/titulo.component';
 import { AvatarComponent } from './components/avatar/avatar.component';
 import { TransactionsComponent } from './components/formTransactions/transactions.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ListTransactionComponent } from './components/listTransaction/list-transaction.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     FooterComponent,
     TituloComponent,
     AvatarComponent,
-    TransactionsComponent
+    TransactionsComponent,
+    ListTransactionComponent
   ],
   imports: [
     CommonModule,
@@ -28,7 +30,8 @@ import { ReactiveFormsModule } from '@angular/forms';
   exports: [
     HeaderComponent,
     FooterComponent,
-    TituloComponent
+    TituloComponent,
+    ListTransactionComponent
   ]
 })
 export class SharedModule { }

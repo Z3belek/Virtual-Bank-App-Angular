@@ -44,7 +44,6 @@ export class TransactionsComponent implements OnInit {
     }
 
     this.modalSS.postTransaction(formData).subscribe((data)=>{
-      console.log(data)
     })
   }
 
@@ -80,7 +79,6 @@ export class TransactionsComponent implements OnInit {
     this.hourAndDate = this.fecha +" "+ clockSet
     console.log(this.hourAndDate)
   }
-
 
 
 
