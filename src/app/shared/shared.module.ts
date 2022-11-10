@@ -10,7 +10,8 @@ import { DialogComponent } from './components/dialog/dialog.component';
 import { AvatarComponent } from './components/avatar/avatar.component';
 import { TransactionsComponent } from './components/formTransactions/transactions.component';
 import { TableComponent } from './components/table/table.component';
-
+import { ListTransactionComponent } from './components/listTransaction/list-transaction.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -22,18 +23,21 @@ import { TableComponent } from './components/table/table.component';
     AvatarComponent,
     TransactionsComponent,
     TableComponent,
+    ListTransactionComponent
   ],
   imports: [
     CommonModule,
     AuthRoutingModule,
     MaterialModule,
+    ReactiveFormsModule
   ],
   exports: [
     HeaderComponent,
     FooterComponent,
     TituloComponent,
     DialogComponent,
-    TableComponent
+    TableComponent,
+    ListTransactionComponent
   ]
 })
 export class SharedModule { }

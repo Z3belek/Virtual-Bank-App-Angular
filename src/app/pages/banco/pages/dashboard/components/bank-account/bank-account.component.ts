@@ -1,8 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { AddBankAccountComponent } from './components/add-bank-account/add-bank-account.component';
 import { TransactionsService } from '@core/services/banco/transactions.service';
 import { TransactionsComponent } from '@shared/components/formTransactions/transactions.component';
+import { Accounts } from '@core/mock/interfaces';
+import { newBankAccount } from '@core/model/bank-account.interface';
+import { BankAccountService } from '@core/services/banco/bank-account.service';
+import { formatDate } from '@angular/common';
 
 @Component({
   selector: 'ab-bank-account',
@@ -10,14 +13,25 @@ import { TransactionsComponent } from '@shared/components/formTransactions/trans
   styleUrls: ['./bank-account.component.scss']
 })
 export class BankAccountComponent implements OnInit {
+  @Input() userId!: number;
   openTab = 1;
   hideCurrency: boolean = false;
+  newAccountData!: newBankAccount;
+  Accounts:Accounts[] = [
+    {
+    creationDate: '2022-06-20',
+    money: 1300,
+    isBlocked: false,
+    userId: 993,
+    }
+  ]
   constructor(
     public dialog: MatDialog,
     private modalSS: TransactionsService,
+    private bankAccountService: BankAccountService
   ) { }
 
-  
+
   //MODAL//
   modalRecargar(){
     this.modalSS.$modal.emit(true)
@@ -43,6 +57,12 @@ export class BankAccountComponent implements OnInit {
   }
 
   addBankAccount() {
-    this.dialog.open(AddBankAccountComponent);
+    this.newAccountData = {
+      creationDate: formatDate(new Date(), 'yyyy-MM-dd HH:mm:ss', 'en'),
+      money: 0,
+      isBlocked: false,
+      userId: this.userId
+    }
+    this.bankAccountService.newBAccount(this.newAccountData)
   }
 }

@@ -1,6 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { TransactionsService } from '@core/services/banco/transactions.service';
 import { Transactions } from '@core/model/interfacesTransactions';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { BaseServicesService } from '@core/services/base-service';
+import { User } from '@core/model/interfaces';
 
 @Component({
   selector: 'ab-transactions',
@@ -8,6 +11,9 @@ import { Transactions } from '@core/model/interfacesTransactions';
   styleUrls: ['./transactions.component.scss']
 })
 export class TransactionsComponent implements OnInit {
+  Transferencias:Transactions[] = []
+  enviarDinero!: FormGroup;
+
 
   @Input() tittle:string = ""
 
@@ -17,41 +23,52 @@ export class TransactionsComponent implements OnInit {
   hourAndDate:string=""
   UserID:number=0
 
-  constructor(public modalSS:TransactionsService) { }
+  constructor(
+    public modalSS:TransactionsService,
+    private formBuilder: FormBuilder,
+    private base:BaseServicesService
+    ) { }
 
+    dataUsuario:User = {
+      id:0,
+      first_name: "string",
+      last_name: "string",
+      email: "string",
+      password: "string",
+      roleId: 0,
+      points: 0,
+      }
 
+  ngOnInit(): void {
+    this.enviarDinero = this.formBuilder.group({
+      monto:['', [Validators.required]],
+      tipocuenta:['', [Validators.required]],
+      concepto:['', [Validators.required]]
+    })
 
-
-
-
-  funcASD(){
-    console.log("II")
+    this.obtenerFecha()
+    this.base.getPerfil().subscribe(data=>{
+      this.dataUsuario = data
+      console.log(this.dataUsuario)
+    })
   }
-  
-  
-
-
-  sendDataForm(monto:any,concepto:string){
-
+  sendmoney(){
     //console.log("monto: "+monto, "concepto: "+concepto, "fecha: "+this.hourAndDate)
-    
+    const {monto, tipocuenta, concepto} = this.enviarDinero.value
     const formData : Transactions = {
       amount: monto,
       concept: concepto,
       date: this.hourAndDate,
-      type: 'payment',
-      accountId: 23,
-      userId: 4,
-      to_account_id: 5
+      type: "payment", // se había colocado acá el tipo de cuenta
+      accountId: 993 ,
+      userId: this.dataUsuario.id,
+      to_account_id: 1 // la constante "tipocuenta" devuelve un string "one" y to_account_id espera un number 
     }
 
     this.modalSS.postTransaction(formData).subscribe((data)=>{
       console.log(data)
     })
   }
-  
-
-
 
   obtenerFecha (){
     //FECHA//
@@ -59,7 +76,7 @@ export class TransactionsComponent implements OnInit {
     let day = date.getDate()
     let month = date.getMonth() + 1
     let year = date.getFullYear()
-    
+
     if(month < 10 && day < 10){
       this.fecha = `${year}-0${month}-0${day}`
       console.log(this.fecha)
@@ -72,13 +89,13 @@ export class TransactionsComponent implements OnInit {
     let timeMinutes = date.getMinutes().toString()
     let timeSecond = date.getSeconds().toString()
     let clockSet
-    
+
     if(timeHour.toString().length<2){
       let timeHourString = timeHour.toString()
       timeHourString = "0" + timeHourString
-      clockSet = `${timeHourString}:${timeMinutes}:${timeSecond}` 
+      clockSet = `${timeHourString}:${timeMinutes}:${timeSecond}`
     }else{
-      clockSet = `${timeHour}:${timeMinutes}:${timeSecond}` 
+      clockSet = `${timeHour}:${timeMinutes}:${timeSecond}`
     }
     console.log(clockSet)
 
@@ -88,14 +105,13 @@ export class TransactionsComponent implements OnInit {
 
 
 
-
-  ngOnInit(): void {
-    this.modalSS.$modal.subscribe((valor)=>{
-      console.log(valor)
-      this.correspondeIngreso = valor
-      console.log(this.correspondeIngreso)
-    })
-    this.obtenerFecha()
-  }
+  // ngOnInit(): void {
+  //   this.modalSS.$modal.subscribe((valor)=>{
+  //     console.log(valor)
+  //     this.correspondeIngreso = valor
+  //     console.log(this.correspondeIngreso)
+  //   })
+  //   this.obtenerFecha()
+  // }
 
 }
