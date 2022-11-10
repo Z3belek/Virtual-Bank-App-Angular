@@ -5,8 +5,6 @@ import { MaterialModule } from '../../material/material.module';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatTableModule} from '@angular/material/table';
 import {MatSortModule} from '@angular/material/sort';
-
-
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { NgChartsModule } from 'ng2-charts';
 import { UsuarioPerfilComponent } from './pages/usuario-perfil/usuario-perfil.component';
