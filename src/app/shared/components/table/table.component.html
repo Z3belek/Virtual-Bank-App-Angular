@@ -1,0 +1,61 @@
+<div class="container">
+
+<div class="title-container">
+  <h1 class="title">{{title}}</h1>
+</div>
+
+<section class="table-container mat-elevation-z8" tabindex="0">
+
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+  
+
+  <!-- Operation Column -->
+  <ng-container matColumnDef="operacion">
+    <th mat-header-cell *matHeaderCellDef> Operacion</th>
+    <td mat-cell *matCellDef="let operacion"> {{operacion.operacion}} </td>
+  </ng-container>
+
+  <!-- Name Column -->
+  <ng-container matColumnDef="tipo">
+    <th mat-header-cell *matHeaderCellDef> Tipo </th>
+    <td mat-cell *matCellDef="let operacion"> {{operacion.tipo}} </td>
+  </ng-container>
+
+  <!-- Weight Column -->
+  <ng-container matColumnDef="estado">
+    <th mat-header-cell *matHeaderCellDef> Estado </th>
+    <td mat-cell *matCellDef="let operacion"> {{operacion.estado}}</td>
+  </ng-container>
+
+  <!-- Symbol Column -->
+  <ng-container matColumnDef="fecha">
+    <th mat-header-cell *matHeaderCellDef> Fecha </th>
+    <td mat-cell *matCellDef="let operacion"> {{operacion.fecha}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="hora">
+    <th mat-header-cell *matHeaderCellDef> Hora </th>
+    <td mat-cell *matCellDef="let operacion"> {{operacion.hora}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="usuarioId">
+    <th mat-header-cell *matHeaderCellDef> UsuarioId </th>
+    <td mat-cell *matCellDef="let operacion"> {{operacion.usuarioId}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="monto">
+    <th mat-header-cell *matHeaderCellDef> Monto </th>
+    <td mat-cell *matCellDef="let operacion"> {{operacion.monto}} </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+
+<mat-paginator [pageSizeOptions]="[1, 10, 20]"
+showFirstLastButtons 
+aria-label="Seleccione la página de operaciones">
+</mat-paginator>
+
+</section>
+</div>

@@ -14,6 +14,8 @@ import { LineChartComponent } from './pages/dashboard/components/line-chart/line
 import { AddBankAccountComponent } from './pages/dashboard/components/bank-account/components/add-bank-account/add-bank-account.component';
 import { ContactsComponent } from './pages/contacts/contacts.component';
 
+import { SharedModule } from '@shared/shared.module';
+
 @NgModule({
   declarations: [
     DashboardComponent,
@@ -31,6 +33,7 @@ ProfileComponent,
     BancoRoutingModule,
     MaterialModule,
     NgChartsModule,
+    SharedModule
   ]
 })
 export class BancoModule { }

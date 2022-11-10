@@ -1,0 +1,33 @@
+
+.container{
+  margin: 0 auto;
+    .title-container {
+      width: 100%;
+      padding:0.5 0;
+        .title{
+        text-align: center;
+        margin: 1rem auto;
+        font-size: 1.5rem;
+        font-weight: 400;
+        color:#999;
+      }
+    }
+  .table-container {
+    width: 100%;
+    height: min-content;
+    max-height: 10rem;
+    overflow: auto;
+
+    .mat-table {
+      width: 100%;
+      height: auto;
+
+        .mat-header-cell{
+
+          font-size:1.5rem;
+          font-weight: 400;
+            }
+        }
+
+    }
+}

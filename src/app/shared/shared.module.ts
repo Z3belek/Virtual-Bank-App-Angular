@@ -9,6 +9,7 @@ import { TituloComponent } from './components/titulo/titulo.component';
 import { DialogComponent } from './components/dialog/dialog.component';
 import { AvatarComponent } from './components/avatar/avatar.component';
 import { TransactionsComponent } from './components/formTransactions/transactions.component';
+import { TableComponent } from './components/table/table.component';
 
 
 @NgModule({
@@ -20,6 +21,7 @@ import { TransactionsComponent } from './components/formTransactions/transaction
     DialogComponent,
     AvatarComponent,
     TransactionsComponent,
+    TableComponent,
   ],
   imports: [
     CommonModule,
@@ -30,7 +32,8 @@ import { TransactionsComponent } from './components/formTransactions/transaction
     HeaderComponent,
     FooterComponent,
     TituloComponent,
-    DialogComponent
+    DialogComponent,
+    TableComponent
   ]
 })
 export class SharedModule { }
