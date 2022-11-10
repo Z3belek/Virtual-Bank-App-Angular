@@ -38,6 +38,11 @@ export class BankAccountComponent implements OnInit {
     this.dialog.open(TransactionsComponent)
   }
 
+  modalRetirarDinero(){
+    this.modalSS.$modal.emit(true)
+    this.dialog.open(TransactionsComponent)
+  }
+
 
 
   ngOnInit(): void {
