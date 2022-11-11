@@ -34,6 +34,10 @@ export class UserDataService {
     const url = `${this.baseUrl}/accounts`
     return this.http.get<Accounts>(url)
   }
+  getMeAccount(): Observable<Accounts> {
+    const url = `${this.baseUrl}/accounts/me`
+    return this.http.get<Accounts>(url)
+  }
 
   postAccountsId(id: number): Observable<TransferAccount> {
     const url = `${this.baseUrl}/accounts/${id}`
