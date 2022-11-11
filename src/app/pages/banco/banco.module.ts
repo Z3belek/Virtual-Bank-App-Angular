@@ -19,6 +19,7 @@ import { AddBankAccountComponent } from './pages/dashboard/components/bank-accou
 import { ContactsComponent } from './pages/contacts/contacts.component';
 import { TransactionsComponent } from './pages/dashboard/components/transactions/transactions.component';
 import { SharedModule } from '@shared/shared.module';
+import { RemoveMoneyComponent } from './pages/dashboard/components/bank-account/components/remove-money/remove-money.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { SharedModule } from '@shared/shared.module';
     LineChartComponent,
     AddBankAccountComponent,
     ContactsComponent,
-    TransactionsComponent
+    TransactionsComponent,
+    RemoveMoneyComponent
   ],
   imports: [
     CommonModule,

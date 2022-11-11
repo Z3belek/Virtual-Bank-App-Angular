@@ -4,6 +4,7 @@ import { AddBankAccountComponent } from './components/add-bank-account/add-bank-
 import { TransactionsService } from '@core/services/banco/transactions.service';
 import { TransactionsComponent } from '@shared/components/formTransactions/transactions.component';
 import { Accounts } from '@core/mock/interfaces';
+import { RemoveMoneyComponent } from './components/remove-money/remove-money.component';
 
 @Component({
   selector: 'ab-bank-account',
@@ -40,7 +41,7 @@ export class BankAccountComponent implements OnInit {
 
   modalRetirarDinero(){
     this.modalSS.$modal.emit(true)
-    this.dialog.open(TransactionsComponent)
+    this.dialog.open(RemoveMoneyComponent)
   }
 
 

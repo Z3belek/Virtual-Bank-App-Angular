@@ -11,8 +11,6 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class TransactionsComponent implements OnInit {
   Transferencias:Transactions[] = []
   enviarDinero!: FormGroup;
-  retirarDinero: FormGroup = new FormGroup ({});
-
 
   @Input() tittle:string = ""
 
@@ -29,12 +27,6 @@ export class TransactionsComponent implements OnInit {
       monto:['', [Validators.required]],
       tipocuenta:['', [Validators.required]],
       concepto:['', [Validators.required]]
-    })
-
-    this.retirarDinero = this.formBuilder.group({
-      monto: ['', [Validators.required]],
-      fecha: ['', Validators.required],
-      concepto: ['', Validators.required]
     })
   }
   sendmoney(){
