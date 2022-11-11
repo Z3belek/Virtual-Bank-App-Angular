@@ -1,4 +1,4 @@
-<H1 mat-dialog-title>Recargar</H1>
+<H1 mat-dialog-title>Enviar</H1>
 
 <form [formGroup]="enviarDinero" class="host">
 <mat-form-field appearance="fill">
@@ -24,7 +24,7 @@
 
 <mat-form-field appearance="fill">
     <mat-label>Concepto</mat-label>
-    <textarea matInput formControlName="concepto" maxlength="35" #idConcepto></textarea>
+    <input matInput formControlName="concepto" #idConcepto>
 </mat-form-field>
 <div class="button">
     <button mat-button color="warn" mat-dialog-close >Salir</button>

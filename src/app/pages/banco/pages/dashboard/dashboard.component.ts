@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '@core/model/interfaces';
-import { AuthService } from 'src/app/core/services/auth.service';
-import {animate, state, style, transition, trigger} from '@angular/animations';
 import { BaseServicesService } from '@core/services/base-service';
 
 @Component({
@@ -11,31 +9,20 @@ import { BaseServicesService } from '@core/services/base-service';
 })
 
 export class DashboardComponent implements OnInit {
-  dataUsuario:User = {
-    id:0,
-    first_name:'',
-    last_name:'',
-    email:'',
-    password:'',
-    points:0,
-    roleId:0
+  dataUsuario!:User;
+
+  constructor(private baseService:BaseServicesService){
+
   }
-
-
-  constructor(
-    private authService: AuthService,
-    private base:BaseServicesService
-  ) { }
-
 
   ngOnInit(): void {
-    this.usuario()
+    this.baseService.getPerfil().subscribe(data => {
+      this.dataUsuario = data
+      console.log(this.dataUsuario)
+
+    })
   }
 
-  usuario(){
-       this.base.getPerfil().subscribe(data => {
-        this.dataUsuario = data
-        console.log(this.dataUsuario)
-       })
-    }
-    }
+
+
+}
