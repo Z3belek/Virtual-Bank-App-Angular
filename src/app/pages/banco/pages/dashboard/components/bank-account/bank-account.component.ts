@@ -99,6 +99,7 @@ export class BankAccountComponent implements OnInit {
       userId: this.userId
     }
     this.bankAccountService.newBAccount(newAccountData)
+    this.getBankAccounts(); 
   }
 
   getBankAccounts() {

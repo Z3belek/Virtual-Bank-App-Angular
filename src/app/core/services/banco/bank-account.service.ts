@@ -13,11 +13,14 @@ export class BankAccountService {
     private http: HttpClient
   ) { }
 
-  newBAccount(account: newBankAccount) {
-    return this.http.post(`${this.apiUrl}/accounts`, account)
+ newBAccount(account: newBankAccount) { 
+     const resp = (this.http.post(`${this.apiUrl}/accounts`, account)).subscribe(data =>
+      (data));
+      return resp;
   }
 
   BAccountsMe (): Observable<BankAccount[]> {
+   
     return this.http.get<BankAccount[]>(`${this.apiUrl}/accounts/me`)
   }
 }
