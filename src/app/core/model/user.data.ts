@@ -8,7 +8,7 @@ export interface Accounts {
 }
 
 export interface TransferAccount {
-  type: string | string,
+  type: string,
   concept: string,
   amount: number
 }
@@ -29,4 +29,19 @@ export interface FixedTerms {
   amount: number,
   creation_date: Date,
   closing_date: Date
+}
+export interface FixedDepositCreated {
+  id: number;
+  userId: number;
+  accountId: number;
+  amount: number;
+  creation_date: Date;
+  closing_date: Date;
+  updatedAt: Date;
+  createdAt: Date;
+}
+export interface ResponseFixedDeposits {
+  previousPage: null,
+  nextPage: null,
+  data: FixedDepositCreated[]
 }

@@ -6,31 +6,36 @@ import { Accounts } from '@core/mock/interfaces';
 import { newBankAccount, BankAccount } from '@core/model/bank-account.interface';
 import { BankAccountService } from '@core/services/banco/bank-account.service';
 import { formatDate } from '@angular/common';
+import { UserDataService } from '@core/services/user-data.service';
 
 @Component({
   selector: 'ab-bank-account',
   templateUrl: './bank-account.component.html',
-  styleUrls: ['./bank-account.component.scss']
+  styleUrls: ['./bank-account.component.scss'],
 })
 export class BankAccountComponent implements OnInit {
   @Input() userId!: number;
   openTab = 1;
   hideCurrency: boolean = false;
+  transacciones: any;
+  plazos: any;
+  resultado!:number;
   ListBankAccounts: BankAccount[] = [];
-  transacciones: any
+  money:any
+  objetoDinero:any
+  cuentaResultado:any
 
   constructor(
     public dialog: MatDialog,
     private modalSS: TransactionsService,
-    private bankAccountService: BankAccountService
-  ) { }
-
+    private bankAccountService: BankAccountService,
+    private user: UserDataService
+  ) {}
 
   //MODAL//
   modalRecargar() {
-    this.modalSS.$modal.emit(true)
-    this.dialog.open(TransactionsComponent)
-    this.transaccionesS()
+    this.modalSS.$modal.emit(true);
+    this.dialog.open(TransactionsComponent);
   }
 
   modalTransferir() {
@@ -38,20 +43,42 @@ export class BankAccountComponent implements OnInit {
     this.dialog.open(TransactionsComponent)
   }
 
-
-
   ngOnInit(): void {
-    this.transaccionesS()
+    // this.transaccionesS();
+    this.getPlazos();
     this.getBankAccounts()
+
   }
 
-  transaccionesS() {
-    this.modalSS.getListTransaction().subscribe((list: any) => {
-      const { data } = list
-      this.transacciones = data
-      this.transacciones = this.transacciones[0].amount
-      console.log(this.transacciones)
+  getPlazos() {
+    this.user.getFixedDeposits().subscribe((list: any) => {
+      console.log(list)
+      const { data } = list;
+      this.plazos = data;
+      this.plazos = this.plazos.forEach((cuenta:any) => {
+        const {amount, id} = cuenta
+        Number(this.objetoDinero = {amount, id})
+        console.log(this.objetoDinero)
+       })
 
+    });
+  }
+
+
+
+  // transaccionesS() {
+  //   this.modalSS.getListTransaction().subscribe((list: any) => {
+  //     const { data } = list;
+  //     this.transacciones = data;
+  //     this.transacciones = this.transacciones[0].amount;
+  //     console.log(this.transacciones)
+  //   });
+  //   this.getMoneyAccount()
+  //   this.getBankAccounts()
+  // }
+
+  getMoneyAccount() {
+    this.bankAccountService.BAccountsMe().subscribe((list: any) => {
     })
   }
 
@@ -63,6 +90,7 @@ export class BankAccountComponent implements OnInit {
     this.hideCurrency = !this.hideCurrency;
   }
 
+
   addBankAccount() {
     const newAccountData: newBankAccount = {
       creationDate: formatDate(new Date(), 'yyyy-MM-dd HH:mm:ss' , 'en'),
@@ -71,13 +99,19 @@ export class BankAccountComponent implements OnInit {
       userId: this.userId
     }
     this.bankAccountService.newBAccount(newAccountData)
-    console.log(newAccountData)
   }
 
   getBankAccounts() {
     this.bankAccountService.BAccountsMe().subscribe((data: any) => {
       this.ListBankAccounts = data
       console.log(this.ListBankAccounts)
+      this.objetoDinero = this.ListBankAccounts.forEach((cuenta:any) => {
+        const {money, id} = cuenta
+        Number(this.money = {money, id})
+
+       })
     })
   }
+
+
 }

@@ -52,14 +52,14 @@
                     </mat-checkbox>
 
                     <div class="text-sm">
-                        <a href="#" class="font-medium text-sky-600 hover:text-sky-500"> ¿Olvidaste la
+                        <a href="#" routerLink="/auth/reset" class="font-medium text-sky-600 hover:text-sky-500"> ¿Olvidaste la
                             contraseña? </a>
                     </div>
                 </div>
 
                 <div>
                     <button [disabled]="loading" type="submit" (click)="login()" mat-raised-button color="primary"
-                        class="w-full py-1 bg-sky-700">Ingresar</button>
+                        class="w-full py-1 bg-sky-700" id="btn-login">Ingresar</button>
                 </div>
 
             </div>
