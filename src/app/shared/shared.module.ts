@@ -12,6 +12,7 @@ import { TransactionsComponent } from './components/formTransactions/transaction
 import { TableComponent } from './components/table/table.component';
 import { ListTransactionComponent } from './components/listTransaction/list-transaction.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { FormEndPointTransactionComponent } from './components/formEndPointTransaction/form-end-point-transaction.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,9 @@ import { ReactiveFormsModule } from '@angular/forms';
     AvatarComponent,
     TransactionsComponent,
     TableComponent,
-    ListTransactionComponent
+    ListTransactionComponent,
+    FormEndPointTransactionComponent
+
   ],
   imports: [
     CommonModule,
@@ -37,7 +40,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     TituloComponent,
     DialogComponent,
     TableComponent,
-    ListTransactionComponent
+    ListTransactionComponent,
+    FormEndPointTransactionComponent
   ]
 })
 export class SharedModule { }
