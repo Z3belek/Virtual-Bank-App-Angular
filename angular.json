@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "Skill-Up-Angular": {
+    "Virtual-Bank-App-Angular": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/skill-up-angular",
+            "outputPath": "dist/virtual-bank-app-angular",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -70,10 +70,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "Skill-Up-Angular:build:production"
+              "browserTarget": "Virtual-Bank-App-Angular:build:production"
             },
             "development": {
-              "browserTarget": "Skill-Up-Angular:build:development"
+              "browserTarget": "Virtual-Bank-App-Angular:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -81,7 +81,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "Skill-Up-Angular:build"
+            "browserTarget": "Virtual-Bank-App-Angular:build"
           }
         },
         "test": {
@@ -107,6 +107,8 @@
     }
   },
   "cli": {
-    "analytics": "5cf748f5-8c16-4f63-9d31-20b669b2b11f"
+    "schematicCollections": [
+      "@ngrx/schematics"
+    ]
   }
 }

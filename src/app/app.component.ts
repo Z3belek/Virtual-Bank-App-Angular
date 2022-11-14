@@ -7,10 +7,9 @@ import { Router } from '@angular/router';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'e-wallet';
+  title = 'Virtual-Bank-App-Angular';
 
   constructor(
     public router: Router
-  ) {
-  }
+  ) {}
 }

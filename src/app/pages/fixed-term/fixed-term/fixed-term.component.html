@@ -1,0 +1,74 @@
+<header class="relative overflow-hidden">
+    <div class="absolute bg-sky-600 h-32 w-full inset-0 -z-10"></div>
+    <div class="pt-4 pb-80 sm:pt-8 sm:pb-40 lg:pb-48">
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 sm:static">
+            <div class="text-3xl font-medium text-white">
+                <h1>Plazo fijo</h1>
+            </div>
+            <div class="mt-5">
+                <div
+                    class="bg-white rounded-lg shadow-md grid grid-cols-1 lg:grid-cols-2 items-center divide-y">
+                    <div class="w-full p-6">
+                        <form method="POST" [formGroup]="fixedTerm">
+                            <div>
+                                <label for="accountId" class="block text-sm font-medium text-gray-700"> Cuenta bancaria
+                                </label>
+                                <div class="mt-1">
+                                    <mat-form-field appearance="outline" class="w-full">
+                                        <mat-select id="accountId" name="accountId" formControlName="accountId">
+                                            <mat-option *ngFor="let myAccount of allMyAccounts" [value]="myAccount.id">
+                                                {{myAccount.id}}
+                                            </mat-option>
+                                        </mat-select>
+                                        <mat-error *ngIf="fixedTerm.controls['accountId'].hasError('required')">
+                                            La cuenta es <strong>requerida</strong>
+                                        </mat-error>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div>
+                                <label for="amount" class="block text-sm font-medium text-gray-700"> Cantidad a acreditar
+                                </label>
+                                <div class="mt-1">
+                                    <mat-form-field appearance="outline" class="w-full">
+                                        <input matInput id="amount" name="amount"
+                                            class="border focus:ring-sky-500 focus:border-sky-500" type="number"
+                                            formControlName="amount">
+                                        <mat-error *ngIf="fixedTerm.controls['amount'].hasError('required')">
+                                            El monto a ingresar es <strong>requerido</strong>
+                                        </mat-error>
+                                        <mat-error *ngIf="fixedTerm.controls['amount'].hasError('min')">
+                                            El monto a ingresar debe ser <strong>mayor a 0</strong>
+                                        </mat-error>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+    
+                            <div>
+                                <label for="closign_date" class="block text-sm font-medium text-gray-700"> Fecha de cierre
+                                </label>
+                                <div class="mt-1">
+                                    <mat-form-field appearance="outline" class="w-full">
+                                        <input matInput [matDatepicker]="picker" id="closign_date" [min]="minDate" name="closing_date" class="border focus:ring-sky-500 focus:border-sky-500"
+                                         formControlName="closing_date">
+                                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                        <mat-datepicker #picker></mat-datepicker>
+                                      </mat-form-field>
+                                </div>
+                            </div>
+                        </form>
+                        <button mat-flat-button color="primary" class="bg-sky-700 w-full" (click)="createFixedTerm()">Crear plazo</button>
+                    </div>
+                    <div class="w-full hidden lg:block">
+                        <img src="assets/imgFondo.jpg" class="w-full rounded-r-lg" alt="">
+                    </div>
+                </div>
+            </div>
+            <div class="mt-5">
+                <div class="bg-white rounded-lg shadow-md p-3">
+                    <ab-ft-table></ab-ft-table>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>

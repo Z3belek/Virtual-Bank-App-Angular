@@ -1,5 +1,5 @@
-<ab-header *ngIf="!(router.url === '/auth/login' || router.url === '/auth/registro')"></ab-header>
+<ab-header *ngIf="!(router.url === '/login' || router.url === '/register' || router.url === '/404')"></ab-header>
 <router-outlet>
-    <ab-titulo *ngIf="!(router.url === '/home')"></ab-titulo>
+    <ab-breadcrumb *ngIf="!(router.url === '/home' || router.url === '/404' || router.url === '/login' || router.url === '/register')"></ab-breadcrumb>
 </router-outlet>
-<ab-footer *ngIf="!(router.url === '/auth/login' || router.url === '/auth/registro')"></ab-footer>
+<ab-footer *ngIf="!(router.url === '/login' || router.url === '/register' || router.url === '/404')"></ab-footer>

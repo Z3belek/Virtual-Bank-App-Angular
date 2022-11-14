@@ -1,0 +1,28 @@
+<table mat-table [dataSource]="dataSource" class="w-full">
+    <ng-container matColumnDef="amount">
+      <th mat-header-cell *matHeaderCellDef> Monto</th>
+      <td mat-cell *matCellDef="let element"> {{element.amount | currency}} </td>
+    </ng-container>
+    <ng-container matColumnDef="interestGained">
+      <th mat-header-cell *matHeaderCellDef> Intereses</th>
+      <td mat-cell *matCellDef="let element"> {{element.interestGained | currency}} </td>
+    </ng-container>
+    <ng-container matColumnDef="creation_date">
+        <th mat-header-cell *matHeaderCellDef> Fecha creacion </th>
+        <td mat-cell *matCellDef="let element"> {{element.creation_date | date}} </td>
+      </ng-container>
+    <ng-container matColumnDef="closing_date">
+      <th mat-header-cell *matHeaderCellDef> Fecha cierre </th>
+      <td mat-cell *matCellDef="let element"> {{element.closing_date | date}} </td>
+    </ng-container>
+    <ng-container matColumnDef="delete">
+      <th mat-header-cell *matHeaderCellDef> Eliminar</th>
+      <td mat-cell *matCellDef="let element">
+          <button mat-icon-button class="text-red-700" (click)="deleteFixedTerm(element.id)" matTooltip="Eliminar plazo">
+              <mat-icon>delete</mat-icon>
+          </button>
+      </td>
+  </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>

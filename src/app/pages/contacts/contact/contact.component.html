@@ -1,0 +1,35 @@
+<header class="relative overflow-hidden">
+  <div class="absolute bg-sky-600 h-32 w-full inset-0 -z-10"></div>
+  <div class="pt-4 pb-80 sm:pt-8 sm:pb-40 lg:pb-48">
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 sm:static">
+      <div class="text-3xl font-medium text-white">
+        <h1>Contactos</h1>
+      </div>
+      <div class="mt-5">
+        <div class="bg-white rounded-lg shadow-md p-1">
+          <table mat-table [dataSource]="dataSource" class="rounded-md">
+            <ng-container matColumnDef="first_name">
+              <th mat-header-cell *matHeaderCellDef> Nombre</th>
+              <td mat-cell *matCellDef="let element"> {{element.first_name}} {{element.last_name}} </td>
+            </ng-container>
+            <ng-container matColumnDef="email">
+              <th mat-header-cell *matHeaderCellDef> Email </th>
+              <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+            </ng-container>
+            <ng-container matColumnDef="enviar">
+              <th mat-header-cell *matHeaderCellDef> Transferir </th>
+              <td mat-cell *matCellDef="let element">
+                <button mat-flat-button color="primary" (click)="transferTo(element.id)">Enviar</button>
+              </td>
+            </ng-container>
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          </table>
+          <mat-paginator (click)="getAllUsers()" #paginator [length]="100" [pageSize]="10" [pageSizeOptions]="[5, 10]"
+            aria-label="Select page">
+          </mat-paginator>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>

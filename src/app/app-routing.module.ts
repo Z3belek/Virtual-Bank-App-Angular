@@ -1,41 +1,40 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AuthGuard } from './auth/guards/auth.guard';
-import { BancoGuard } from './auth/guards/banco.guard';
-import { LoginComponent } from './auth/login/login.component';
 import { HomeComponent } from './pages/home/home.component';
-import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
 
 const routes: Routes = [
+  {path: '', redirectTo: 'home', pathMatch: 'full'},
   {
-    path:'home',
-    component:HomeComponent
-  },
-
-  {
-    path:'auth',
-    loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule),
-    canLoad:[BancoGuard],
-    canActivate:[BancoGuard]
+    path: 'home',
+    component: HomeComponent
   },
   {
-    path:'banco',
-    loadChildren: () => import('./pages/banco/banco.module').then(m => m.BancoModule),
-    canLoad: [AuthGuard],
-    canActivate:[AuthGuard]
+    path: 'login',
+    loadChildren: () => import('./pages/auth-login/auth-login.module').then(m => m.AuthLoginModule)
   },
   {
-    path: '',
-    redirectTo: 'home',
-    pathMatch: 'full'
+    path: 'register',
+    loadChildren: () => import('./pages/auth-register/auth-register.module').then(m => m.AuthRegisterModule)
   },
   {
-    path:'404',
-    component:PageNotFoundComponent
+    path: 'profile',
+    loadChildren: () => import('./pages/user-page/user-page.module').then(m => m.UserPageModule)
   },
   {
-    path:'**',
-    redirectTo:'404'
+    path: 'contacts',
+    loadChildren: () => import('./pages/contacts/contacts.module').then(m => m.ContactsModule)
+  },
+  {
+    path: 'fixed-term',
+    loadChildren: () => import('./pages/fixed-term/fixed-term.module').then(m => m.FixedTermModule)
+  },
+  {
+    path: '404',
+    loadChildren: () => import('./pages/page-not-found/page-not-found.module').then(m => m.PageNotFoundModule)
+  },
+  {
+    path: '**',
+    redirectTo: '404'
   }
 ];
 

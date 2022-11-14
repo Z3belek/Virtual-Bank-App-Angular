@@ -1,0 +1,52 @@
+<div class="flex flex-col w-full gap-10">
+    <div class="bg-sky-900 text-white py-4 text-center rounded-sm">
+        Depositar en tu cuenta
+    </div>
+    <div class="px-5 pb-5">
+        <form method="POST" [formGroup]="transferForm">
+            <div>
+                <label for="toAccountId" class="block text-sm font-medium text-gray-700"> ID de la cuenta a transferir </label>
+                <div class="mt-1">
+                    <mat-form-field appearance="outline" class="w-full">
+                        <input matInput id="toAccountId" name="toAccountId" class="border focus:ring-sky-500 focus:border-sky-500"
+                            formControlName="toAccountId">
+                        <mat-error *ngIf="transferForm.controls['toAccountId'].hasError('required')">
+                            El ID de la cuenta es <strong>requerido</strong>
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div>
+                <label for="amount" class="block text-sm font-medium text-gray-700"> Cantidad a acreditar </label>
+                <div class="mt-1">
+                    <mat-form-field appearance="outline" class="w-full">
+                        <input matInput id="amount" name="amount" class="border focus:ring-sky-500 focus:border-sky-500"
+                            type="number" formControlName="amount">
+                        <mat-error *ngIf="transferForm.controls['amount'].hasError('required')">
+                            El monto a ingresar es <strong>requerido</strong>
+                        </mat-error>
+                        <mat-error *ngIf="transferForm.controls['amount'].hasError('min')">
+                            El monto a ingresar debe ser <strong>mayor a 0</strong>
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div>
+                <label for="concept" class="block text-sm font-medium text-gray-700"> Concepto </label>
+                <div class="mt-1">
+                    <mat-form-field appearance="outline" class="w-full">
+                        <mat-select id="concept" name="concept" formControlName="concept">
+                            <mat-option *ngFor="let concept of allConcepts" [value]="concept.value">
+                                {{concept.value}}
+                            </mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="transferForm.controls['concept'].hasError('required')">
+                            El concepto es <strong>requerido</strong>
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+            </div>
+        </form>
+        <button mat-raised-button color="primary" class="w-full bg-sky-700" (click)="transferToAccount()">Transferir monto</button>
+    </div>
+</div>

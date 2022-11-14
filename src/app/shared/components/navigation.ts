@@ -1,11 +1,11 @@
 export const navbarData = [
     {
-        ruta: 'banco/plazos',
+        ruta: 'fixed-term',
         icon: 'folder_copy',
         label: 'Plazos'
     },
     {
-        ruta: 'banco/contacts',
+        ruta: '/contacts',
         icon: 'folder_copy',
         label: 'Contactos'
     }
