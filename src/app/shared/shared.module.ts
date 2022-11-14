@@ -13,9 +13,6 @@ exports: [
     CommonModule,
     FormsModule,
     ReactiveFormsModule
-],
-declarations: [
-  AlertBarComponent
 ]
 })
 export class SharedModule { }

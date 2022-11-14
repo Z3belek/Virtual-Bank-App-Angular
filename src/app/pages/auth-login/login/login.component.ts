@@ -38,7 +38,10 @@ export class LoginComponent implements OnInit {
     const user: LoginUser = this.loginForm.value;
     if (this.loginForm.valid) {
       this.loading = true;
-      this.store.dispatch(Auth.LoginSuccess({ user }));
+      this.store.dispatch(Auth.LoginSuccess({ user }))
+      setTimeout(() => {
+        this.loading = false;
+      }, 500);
     }
   }
 
