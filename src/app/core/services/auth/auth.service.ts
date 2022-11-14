@@ -33,12 +33,8 @@ export class AuthService {
     )
   }
 
-  resetPassword(userId: number, password: string) {
-    return this.http.patch(`${this.apiUrl}/users/${userId}`, password).pipe(
-      catchError((error) => {
-        return error;
-      })
-    )
+  resetPassword(id: number, password: string) {
+    return this.http.patch(`${this.apiUrl}/users/resetPassword/${id}`, { password });
   }
 
   get userAuth() {

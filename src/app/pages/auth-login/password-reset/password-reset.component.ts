@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import * as Auth from '@core/services/auth/store/actions/auth.actions';
+import { AuthService } from '@core/services/auth/auth.service';
 
 @Component({
   selector: 'ab-password-reset',
@@ -13,7 +14,7 @@ export class PasswordResetComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private store: Store<any>,
+    private authService: AuthService,
   ) { }
 
   ngOnInit(): void {
@@ -44,11 +45,13 @@ export class PasswordResetComponent implements OnInit {
   }
 
   resetPassword() {
+    const userId: number = this.resetForm.value.userId;
+    const password: string = this.resetForm.value.password;
     if (this.resetForm.valid) {
-      this.store.dispatch(Auth.ResetPasswordSuccess({
-        id: this.resetForm.value.userId,
-        password: this.resetForm.value.password
-      }));
+      this.authService.resetPassword(userId, password).subscribe(data => {
+        console.log(data);
+      }
+      )
     }
   }
 }
