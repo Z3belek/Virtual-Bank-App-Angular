@@ -94,9 +94,9 @@ export class TransactionsComponent implements OnInit {
         "type": this.enviarDinero.value.type,
         "concept": this.enviarDinero.value.concept,
         "amount": this.enviarDinero.value.amount
-      }).subscribe(data => {
-      })
+      }).subscribe(data => {       
 
+      })
 
     }
 

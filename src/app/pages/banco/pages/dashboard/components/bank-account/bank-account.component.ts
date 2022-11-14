@@ -16,6 +16,7 @@ import { FormEndPointTransactionComponent } from '@shared/components/formEndPoin
 })
 export class BankAccountComponent implements OnInit {
   @Input() userId!: number;
+  @Input() dataUser:any
   openTab = 1;
   hideCurrency: boolean = false;
   transacciones: any;
@@ -47,7 +48,6 @@ export class BankAccountComponent implements OnInit {
     // this.transaccionesS();
     this.getPlazos();
     this.getBankAccounts()
-
   }
 
   getPlazos() {
