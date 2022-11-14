@@ -11,6 +11,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatDialogModule } from '@angular/material/dialog';
 import { PasswordResetComponent } from './password-reset/password-reset.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { PasswordResetComponent } from './password-reset/password-reset.componen
     HttpClientModule,
     MatCheckboxModule,
     MatIconModule,
-    MatDialogModule
+    MatDialogModule,
+    MatSnackBarModule
   ]
 })
 export class AuthLoginModule { }

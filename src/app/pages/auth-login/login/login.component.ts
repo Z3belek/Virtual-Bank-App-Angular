@@ -7,6 +7,8 @@ import * as Auth from '@core/services/auth/store/actions/auth.actions';
 import * as Select from '@core/services/auth/store/selectors/auth.selectors';
 import { MatDialog } from '@angular/material/dialog';
 import { PasswordResetComponent } from '../password-reset/password-reset.component';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { AlertBarComponent } from '@shared/components/alert-bar/alert-bar.component';
 
 @Component({
   selector: 'ab-login',
@@ -22,7 +24,8 @@ export class LoginComponent implements OnInit {
   constructor(
     private store: Store<any>,
     private formBuilder: FormBuilder,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private _snackBar: MatSnackBar
   ) {
     this.isLogged$ = this.store.select(Select.isLoggedSelector);
   }
@@ -48,6 +51,17 @@ export class LoginComponent implements OnInit {
   passwordReset() {
     this.dialog.open(PasswordResetComponent, {
       width: '400px',
+    });
+  }
+
+  successLogin() {
+    this._snackBar.openFromComponent(AlertBarComponent, {
+      duration: 5000,
+      data: {
+        icon: 'check_circle',
+        message: 'Login successful',
+        class: 'success'
+      }
     });
   }
 }

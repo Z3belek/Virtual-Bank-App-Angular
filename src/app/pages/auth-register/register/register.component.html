@@ -83,11 +83,11 @@
                             </div>
                         </div>
                         <div class="space-y-1">
-                            <label for="password" class="block text-sm font-medium text-gray-700"> Confirmar contraseña
+                            <label for="confirmPassword" class="block text-sm font-medium text-gray-700"> Confirmar contraseña
                             </label>
                             <div class="mt-1">
                                 <mat-form-field appearance="outline" class="w-full">
-                                    <input matInput id="confirmPassword" name="password" type="password"
+                                    <input matInput id="confirmPassword" name="confirmPassword" type="confirmPassword"
                                         autocomplete="current-password" formControlName="confirmPassword"
                                         class="border focus:ring-sky-500 focus:border-sky-500">
                                     <mat-error *ngIf="registerForm.controls['confirmPassword'].hasError('required')">
@@ -112,7 +112,7 @@
                 </div>
                 <div>
                     <button [disabled]="loading" type="submit" mat-raised-button color="primary"
-                        class="w-full py-1 bg-sky-700">Registrarse</button>
+                        class="w-full py-1 bg-sky-700" (click)="register()">Registrarse</button>
                 </div>
             </div>
         </div>

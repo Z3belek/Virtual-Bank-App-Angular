@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
+import { MAT_SNACK_BAR_DATA } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'ab-alert-bar',
@@ -7,9 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AlertBarComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    @Inject(MAT_SNACK_BAR_DATA) public data: AlertBarData
+    ) { }
 
   ngOnInit(): void {
   }
 
+}
+
+export interface AlertBarData {
+  icon: string;
+  message: string;
+  class: string;
 }
