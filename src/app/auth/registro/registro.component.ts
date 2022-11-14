@@ -1,7 +1,7 @@
 import { UserRegister } from './../../core/model/interfaces';
 import { Store } from '@ngrx/store';
 import { Component, OnInit } from '@angular/core';
-import { AbstractControl, FormBuilder, FormGroup, ValidatorFn, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { MatDialog } from '@angular/material/dialog';
@@ -21,14 +21,6 @@ export class RegistroComponent implements OnInit {
   resultado: boolean = false
   user: any;
   loading = false;
-
-  // //variables
-  // form: FormGroup = this.formBuilder.group({
-  //   first_name: ['', [Validators.required]],
-  //   last_name:['', [Validators.required]],
-  //   email: ['', [Validators.required, Validators.email]],
-  //   password:['', [Validators.required]],
-  // })
 
   constructor(
     private formBuilder: FormBuilder,
@@ -79,31 +71,10 @@ export class RegistroComponent implements OnInit {
         matchingControl.setErrors({ passwordMatch: true });
       } else {
         matchingControl.setErrors(null);
+
       }
     }
 }
-
-
-
-
-
-  // register() {
-  //   this.isSubmitted = true;
-  //   if (this.registerForm.valid) {
-  //     this.authService.registro(this.registerForm.value)
-  //     .subscribe(data => {
-  //       if(data){
-  //       // this.store.dispatch(Auth.Register({user}))
-  //       this.router.navigate(['/auth/login'])
-  //       } else {
-  //         this.sweetalert.datosDuplicadosAlert()
-  //         return
-  //       }
-  //     } , error => {
-  //       console.log(error)
-  //     })
-  //   }
-  // }
 
   openDialog() {
     const dialogRef = this.dialog.open(TerminosComponent, {
@@ -113,7 +84,6 @@ export class RegistroComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       if (result === true) {
         this.resultado = true
-        console.log(this.resultado)
       } else {
         this.sweetalert.noAceptoAlert();
         this.router.navigate([''])

@@ -13,10 +13,9 @@ export class BankAccountService {
     private http: HttpClient
   ) { }
 
- newBAccount(account: newBankAccount) { 
-     const resp = (this.http.post(`${this.apiUrl}/accounts`, account)).subscribe(data =>
-      (data));
-      return resp;
+  newBAccount(account: newBankAccount) {
+    const resp = this.http.post(`${this.apiUrl}/accounts`, account).subscribe(data => (data))
+    return resp
   }
 
   BAccountsMe (): Observable<BankAccount[]> {

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router, NavigationEnd, Event } from '@angular/router';
 
 @Component({
@@ -21,7 +21,6 @@ currentRoute: string
     this.router.events.subscribe((event: Event) => {
       if(event instanceof NavigationEnd){
         this.currentRoute = event.url;
-        console.log(this.currentRoute)
       }
       if(this.currentRoute == "/home"){
         this.currentRoute = ""

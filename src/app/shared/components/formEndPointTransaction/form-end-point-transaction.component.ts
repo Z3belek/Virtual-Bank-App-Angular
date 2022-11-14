@@ -4,7 +4,8 @@ import { User } from '@core/model/interfaces';
 import { Transactions } from '@core/model/interfacesTransactions';
 import { TransactionsService } from '@core/services/banco/transactions.service';
 import { BaseServicesService } from '@core/services/base-service';
-import { UserDataService } from '@core/services/user-data.service';
+import Swal from "sweetalert2"
+
 
 @Component({
   selector: 'ab-form-end-point-transaction',
@@ -12,6 +13,21 @@ import { UserDataService } from '@core/services/user-data.service';
   styleUrls: ['./form-end-point-transaction.component.scss']
 })
 export class FormEndPointTransactionComponent implements OnInit {
+
+  sweetalert = Swal.mixin({
+    toast: true,
+    position: 'bottom-end',
+    showConfirmButton: false,
+    timer: 1400,
+    timerProgressBar: true,
+    background:"black",
+    color:"white",
+    didOpen: (toast) => {
+    toast.addEventListener('mouseenter', Swal.stopTimer)
+    toast.addEventListener('mouseleave', Swal.resumeTimer)
+    }
+  })
+
 
   Transferencias:Transactions[] = []
   enviarDinero!: FormGroup;
@@ -28,7 +44,7 @@ export class FormEndPointTransactionComponent implements OnInit {
     public modalSS:TransactionsService,
     private formBuilder: FormBuilder,
     private base:BaseServicesService,
-    private userData:UserDataService) { }
+  ) { }
 
   dataUsuario:User = {
       id:0,
@@ -46,14 +62,12 @@ export class FormEndPointTransactionComponent implements OnInit {
      type:["number", [Validators.required]],
      concept:['', [Validators.required]]
     })
-    
+
     this.base.getPerfil().subscribe((data)=>{
       this.dataUsuario = data
-      console.log(data)
     })
-    
+
     this.obtenerFecha()
-    //this.getContactos()
   }
 
 
@@ -62,43 +76,36 @@ export class FormEndPointTransactionComponent implements OnInit {
 
     const formData :Transactions = {
       amount: amount,
-      concept: concept, 
-      date: this.hourAndDate,    
-      type: "payment",    
+      concept: concept,
+      date: this.hourAndDate,
+      type: "payment",
       accountId: type,
       userId: this.dataUsuario.id,
       to_account_id: 1
     }
 
-    console.log(formData)
-    console.log(form.valid)
 
     if(form.valid==false){
-      console.log("formulario invalido")
+      this.sweetalert.fire({
+        icon: 'error',
+        title: 'Error!',
+        text: 'Ha habido un problema durante la operación.',
+      })
 
     }else{
-      console.log("formulario valido")
-      this.modalSS.postTransaction(formData).subscribe(data => {
-       console.log(data)
+      this.sweetalert.fire({
+        icon: 'success',
+        title: 'Exito!',
+        text: 'Se ha realizado su operación!',
       })
-      
+
+      this.modalSS.postTransaction(formData).subscribe(data => {
+      })
+
     }
   }
 
-
-// SERVICIO PARA OBTENER LISTA DE CONTACTOS
-/*
-  getContactos(){
-    this.base.getUsers().subscribe((res:any)=>{
-      const{data}=res
-      this.namesContactos=data
-      console.log(this.namesContactos)
-    })
-  }
-*/
-
-
-  obtenerFecha (){
+   obtenerFecha (){
     //FECHA//
     let date = new Date()
     let day = date.getDate()
@@ -107,10 +114,8 @@ export class FormEndPointTransactionComponent implements OnInit {
 
     if(month < 10 && day < 10){
       this.fecha = `${year}-0${month}-0${day}`
-      console.log(this.fecha)
     }else{
       this.fecha = `${year}-${month}-${day}`
-      console.log(this.fecha)
     }
     //HORA//
     let timeHour = date.getHours()
@@ -125,9 +130,7 @@ export class FormEndPointTransactionComponent implements OnInit {
     }else{
       clockSet = `${timeHour}:${timeMinutes}:${timeSecond}`
     }
-    console.log(clockSet)
 
     this.hourAndDate = this.fecha +" "+ clockSet
-    console.log(this.hourAndDate)
   }
 }
