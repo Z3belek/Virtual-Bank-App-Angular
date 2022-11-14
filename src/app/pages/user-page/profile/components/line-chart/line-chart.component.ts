@@ -58,7 +58,6 @@ export class LineChartComponent implements OnInit {
           this.months.push(month);
         }
       }
-      console.log(this.months);
     })
   }
 
@@ -72,8 +71,6 @@ export class LineChartComponent implements OnInit {
           this.outflowMoney.push(this.transactionData[i].amount * 1);
         }
       }
-      console.log(this.incomeMoney);
-      console.log(this.outflowMoney);
     })
   }
 

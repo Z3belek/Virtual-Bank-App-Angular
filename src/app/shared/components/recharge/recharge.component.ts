@@ -24,9 +24,6 @@ export class RechargeComponent implements OnInit {
     this.rechargeForm = this.formBuilder.group({
       amount: ['', [Validators.required, Validators.min(1)]],
     });
-    setTimeout(() => {
-      console.log(this.id);
-    }, 1000);
   }
 
   depositToMyAccount() {
